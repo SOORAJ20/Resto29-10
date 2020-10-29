@@ -1,0 +1,57 @@
+<br><br>
+<h1>Restaurant list</h1><br>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Email</th>
+        <th *ngIf="userService.loggedIn()" scope="col">operations</th>
+      </tr>
+    </thead>
+    <tbody class="restos" *ngIf='restos$ | async as restos'>
+      <tr *ngFor="let resto of restos">
+        <td>{{resto.name}}</td>
+        <td>{{resto.address}}</td>
+        <td>{{resto.email}}</td>
+        <td *ngIf="userService.loggedIn()">
+         <i  (click)="deleteResto(resto._id)" class="fa fa-trash" style="font-size:20px;color:red;"></i>&nbsp;&nbsp;
+          &nbsp;&nbsp;
+          <a >
+            <i  routerLink="update-resto/{{resto._id}}" class="fa fa-edit" style="font-size:20px;color:blue;"></i>
+          </a>
+        </td>
+
+      </tr>
+      
+    </tbody>
+  </table>
+
+<br>
+<!--<div class="form-wrrap" *ngIf="showForm && restaurant$ | async as restaurant">
+    <h3>Edit Restaurant Details</h3>
+    <form  [formGroup]="editRestoForm" (ngSubmit)="editResto()">
+
+
+        <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text"  name="name" placeholder="Enter the name" [(ngModel)]="restaurant.name"formControlName="name" />
+        </div>
+
+        <div class="form-group"> 
+            <label for="email">Email</label>
+            <input type="text" name="email" placeholder="Enter the email"[(ngModel)]="restaurant.email" formControlName="email"/>
+        </div>
+
+        <div class="form-group"> 
+            <label for="address">Address</label>
+            <input type="text" name="address" placeholder="Enter the address" [(ngModel)]="restaurant.address"formControlName="address"/>
+        </div>
+
+        
+
+        <input type="submit" value="Update" [disabled]="!editRestoForm.valid"/>
+    </form>
+</div>-->
+<br><br>
